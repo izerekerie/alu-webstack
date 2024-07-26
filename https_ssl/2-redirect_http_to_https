@@ -33,19 +33,19 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend  tracy-frontend-http
+frontend  kerie-frontend-http
         bind *:80
         mode http
 	http-request redirect scheme https code 301 unless { ssl_fc }
 	http-request set-header X-Forwarded-Proto http
-        default_backend tracy-backend
+        default_backend kerie-backend
 
-frontend tracy-frontend-https
-	bind *:443 ssl crt /etc/haproxy/certs/www.tracymurenzi.tech.pem
+frontend kerie-frontend-https
+	bind *:443 ssl crt /etc/haproxy/certs/www.izerekerie.tech.pem
 	http-request set-header X-Forwarded-Proto https
-	default_backend tracy-backend
+	default_backend kerie-backend
 
-backend tracy-backend
+backend kerie-backend
         balance roundrobin
-        server 6167-web-01 54.197.2.229:80 check
-        server 6167-web-02 174.129.174.243:80 check
+        server 6136-web-01 54.90.149.171:80 check
+        server 6136-web-02 54.90.234.10:80 check
